@@ -3,20 +3,20 @@
 
   <div id="new">
     <h2>Question </h2>
-    <form id="survey" action="/survey" method="post">
-    <div id="inputsDiv">
-    <div>
-      <% @survey.questions.each do |question| %>
-      <span class="question"><%= question.name %></span>
-      <% question.options.each do |option|%>
-      <button type="button" class="option"><%= option.name %></button>
-      <% end %>
-      <% end %>
-    </div>
+    <form id="surveyForm" action="/survey/<%= @survey.id %>" method="post">
+      <div id="inputsDiv">
+        <% @survey.questions.each do |question| %>
+        <div>
+          <span class="question"><%= question.name %></span>
+          <% question.options.each do |option|%>
+            <button type="button"  name="<%=option.id%>" class="option"><%= option.name %></button>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+      <input type="submit" name="/survey/<%= @survey.id %>">
+    </form>
+    <button type="button" id="next">Next</button>
+    <button type="button" id="prev">Prev</button>
   </div>
-  <input type="submit">
-</form>
-<button type="button" id="next">Next</button>
-<button type="button" id="prev">Prev</button>
-</div>
 </div>
