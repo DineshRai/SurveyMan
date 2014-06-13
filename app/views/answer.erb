@@ -1,0 +1,22 @@
+<script src="/js/answer.js"></script>
+<div class="container">
+
+  <div id="new">
+    <h2>Question </h2>
+    <form id="survey" action="/survey" method="post">
+    <div id="inputsDiv">
+    <div>
+      <% @survey.questions.each do |question| %>
+      <span class="question"><%= question.name %></span>
+      <% question.options.each do |option|%>
+      <button type="button" class="option"><%= option.name %></button>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <input type="submit">
+</form>
+<button type="button" id="next">Next</button>
+<button type="button" id="prev">Prev</button>
+</div>
+</div>

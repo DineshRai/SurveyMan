@@ -1,5 +1,5 @@
 get '/' do
-  erb :new
+  erb :index
 end
 
 post '/login' do
@@ -7,9 +7,9 @@ post '/login' do
   @password = params[:password]
   if user
     session[:user_id] = user.id
-    @surveys = Survey.all
-    redirect '/sruvey/list'
   end
+  @surveys = Survey.all
+  redirect '/sruvey'
 end
 
 
@@ -17,9 +17,9 @@ post '/signup' do
   @user = User.new(email: params[:email], password: params[:password])
   if @user.save
     session[:user_id] = @user.id
-    @surveys = Survey.all
-    redirect '/survey/list'
   end
+  @surveys = Survey.all
+  redirect '/survey'
 end
 
 get '/survey/new' do
@@ -36,15 +36,15 @@ post '/survey' do
 			Option.create(name: option[:name], question_id: question.id)
 		end
 	end
-	redirect '/survey/list'
+	redirect '/survey'
 end
 
-get '/survey/list' do
+get '/survey' do
 	@surveys = Survey.all
 	erb :list
 end
 
-get '/survey/:id/answer' do
+get '/survey/:id' do
 	@survey = Survey.find(params[:id])
 	erb :answer
 end
