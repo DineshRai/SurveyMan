@@ -1,6 +1,5 @@
 get '/' do
-  # Look in app/views/index.erb
-  erb :index
+  erb :new
 end
 
 post '/login' do
@@ -50,5 +49,5 @@ get '/survey/:id/answer' do
 end
 
 post '/survey/:id' do
-	
+
 end
