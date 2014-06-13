@@ -1,4 +1,10 @@
-get '/' do
+get '/survey/new' do
+  puts params
   # Look in app/views/index.erb
-  erb :index
+  erb :new
+end
+get '/' do
+  p params
+  # Look in app/views/index.erb
+  erb :new
 end

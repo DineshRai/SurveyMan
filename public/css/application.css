@@ -1,9 +1,23 @@
 .container {
-  margin: 20px auto;
   width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+  margin: 0 auto;
 }
-th {
-  text-align: left;
+#new input{
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+  border: 5px red groove;
+  text-align: center;
+}
+#new button{
+  width: 200px;
+  display: block;
+  margin: 10px auto;
+  border: 5px red groove;
+}
+#new h2 {
+  text-align: center;
+}
+#new div {
+  margin: 30px 0;
 }
