@@ -1,4 +1,4 @@
 class Answer < ActiveRecord::Base
-  belongs_to :options
-  belongs_to :responders, class_name: 'User'
+  belongs_to :option
+  belongs_to :responder, class_name: 'User', foreign_key: :user_id
 end
