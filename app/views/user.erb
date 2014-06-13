@@ -1,0 +1,3 @@
+<% User.surveys.each do |survey| %>
+  <a href="/survey/<%= survey.id %>"<%= survey.name %></a><br>
+<% end %>
