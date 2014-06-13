@@ -50,5 +50,7 @@ get '/survey/:id' do
 end
 
 post '/survey/:id' do
-
+  p '*' * 100
+p params
+# redirect '/'
 end

@@ -1,53 +1,56 @@
-function addInputQuestion(question){
-$('#newSurvey #inputsDiv div').last().append('<input class="question" name="question[]" type="text" placeholder="question '+question+'">');
-};
-function addInputOption(question, option){
-  $('#newSurvey #inputsDiv div').last().append('<input class="option" name="options'+question+'[]" type="text" placeholder="option '+option+'">')
-};
-function hideInputDiv(question){
-  $('#newSurvey #inputsDiv div').eq(question-1).hide()
-};
-function showInputDiv(question){
-  $('#newSurvey #inputsDiv div').eq(question-1).show()
-};
 function updateHeader(question){
   $('#new h2').text('Question '+question)
 };
 function nextQuestion(question){
-    hideInputDiv(question-1);
-    updateHeader(question)
+  hideInputDiv(question-1);
+  updateHeader(question);
   if($('#newSurvey div').length > question){
     showInputDiv(question)
-  }else{
-}
-function Answers(id,answerNum) = {
-  this.id = id;
-  this.answerNum = answerNum;
-}
+  };
+};
 
+
+var Answers = {};
+
+function UpdateQuestionView(question){
+  $('#inputsDiv div').each(function(i){
+    if (i === question-1){
+      $(this).show()
+    }else{
+     $(this).hide()
+   };
+ });
+}
 
 $(document).ready(function() {
-  var question = 1
-  updateHeader(question)
-  nextQuestion(question)
-  $('#prev').hide()
-$('#new').on('click','.option', function(event){
-  consol.log(this)
-  });
+  var question = 1;
+  updateHeader(question);
+  UpdateQuestionView(question);
+  $('#prev').hide();
 
+  $('#new').on('click','.option', function(event){
+    console.log($(this).attr('name'));
+    Answers[question-1] = ($(this).attr('name'));
+  });
 
   $('#new').on('click','#next', function(event){
     question ++;
-    nextQuestion(question)
-    $('#prev').show()
+    updateHeader(question);
+    UpdateQuestionView(question);
+    $('#prev').show();
   });
   $('#new').on('click','#prev', function(event){
-    hideInputDiv(question);
     question --;
-    updateHeader(question)
-    showInputDiv(question)
+    updateHeader(question);
+    updateQuestionView(question);
     if (question === 1){
-      $('#prev').hide()
+      $('#prev').hide();
     };
+  });
+  $('#surveyForm').on('submit', function(e){
+    e.preventDefault();
+    console.log(Answers);
+    console.log($('#surveyForm'))
+    // $.post('this.attr('name')', Answers)
   });
 });
