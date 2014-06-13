@@ -21,5 +21,4 @@ class User < ActiveRecord::Base
     return @user if @user and BCrypt::Password.new(@user.password_hash) == password
   end
 
-
 end
