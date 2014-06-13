@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 <% Survey.all.each do |survey| %>
   <a href="/survey/<%= survey.id %>/answer"<%= survey.name %></a><br>
+=======
+<% @surveys.each do |survey| %>
+  <a href="/survey/<%= survey.id %>"><%= survey.name %></a><br>
+>>>>>>> master
 <% end %>
