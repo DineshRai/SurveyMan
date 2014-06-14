@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   });
   $("#login").on("click",function(){
-      $("#login_form").toggle();
+      $("#login_form").show();
       $("#signup_form").hide();
       $("#blur").css("opacity","0.4");
 

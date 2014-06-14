@@ -14,40 +14,40 @@ var Answers = {};
 
 function UpdateQuestionView(question){
   $('#inputsDiv div').each(function(i){
-    if (i === question-1){
-      $(this).show()
+    if (i === question){
+      $(this).show();
     }else{
-     $(this).hide()
+     $(this).hide();
    };
  });
-}
+};
+
 var x1=26;
 var y1=26;
 var x2=26;
 var y2=26;
 var x3=26;
 var y3=26;
+var x4=26;
+var y4=26;
 var dx1=Math.floor(Math.random()*10+4);
 var dy1=Math.floor(Math.random()*10+4);
 var dx2=Math.floor(Math.random()*10+4);
 var dy2=Math.floor(Math.random()*10+4);
 var dx3=Math.floor(Math.random()*10+4);
 var dy3=Math.floor(Math.random()*10+4);
+var dx4=Math.floor(Math.random()*10+4);
+var dy4=Math.floor(Math.random()*10+4);
 
 
-function start()
-{
+function start(){
   var wm = window.innerWidth;
   var hm = window.innerHeight;
   ball = document.getElementById("canvas");
   ball.width = wm
   ball.height = hm
   ball = ball.getContext("2d");
-
-
-  setInterval(move,5);
-}
-
+  setInterval(move,5);};
 function move(){
   var wm = window.innerWidth;
   var hm = window.innerHeight;
@@ -55,8 +55,10 @@ function move(){
   ball.clearRect(0,0, wm,hm);
   ball.beginPath();
   ball.fillStyle=color;
-  ball.arc(x1,y1,20,0,Math.PI*2,true);
-  ball.arc(x2,y2,20,0,Math.PI*2,true);
+  ball.arc(x1,y1,1,0,Math.PI*2,true);
+  ball.arc(x2,y2,1,0,Math.PI*2,true);
+  ball.arc(x3,y3,1,0,Math.PI*2,true);
+  ball.arc(x4,y4,1,0,Math.PI*2,true);
   ball.closePath();
   ball.fill();
   if( x1<25 || x1>wm-25) {dx1=-dx1;}
@@ -67,7 +69,15 @@ function move(){
   if( y2<25 || y2>hm-25) {dy2=-dy2;}
   x2+=dx2;
   y2+=dy2;
-};
+  if( x3<25 || x3>wm-25) {dx3=-dx3;}
+  if( y3<25 || y3>hm-25) {dy3=-dy3;}
+  x3+=dx3;
+  y3+=dy3;
+    if( x4<25 || x4>wm-25) {dx4=-dx4;}
+  if( y4<25 || y4>hm-25) {dy4=-dy4;}
+  x4+=dx4;
+  y4+=dy4;};
+
 $(document).ready(function() {
   start();
   var question = 1;
@@ -88,7 +98,7 @@ $(document).ready(function() {
   $('#new').on('click','#prev', function(event){
     question --;
     updateHeader(question);
-    updateQuestionView(question);
+    UpdateQuestionView(question);
     if (question === 1){
       $('#prev').hide();
     };

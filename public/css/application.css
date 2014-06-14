@@ -2,6 +2,18 @@
   width: 600px;
   margin: 0 auto;
 }
+#login_form {
+  position: fixed;
+  margin-left: 500px;
+}
+#signup_form {
+  position: fixed;
+  margin-left: 500px ;
+}
+
+#image {
+  position: absolute;
+}
 #new input{
   width: 200px;
   display: block;
@@ -23,7 +35,36 @@
 }
 #canvas {
   position: fixed;
-  top:0;
+  top:50px;
   left: 0;
   z-index: -1;
+}
+#topnav {
+/*  position: fixed;
+*/  top:0;
+  height: 50px;
+  width: 100%;
+  margin: auto;
+  background-color: red;
+  font-size: 25px;
+}
+#topnav a {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  color:yellow;
+
+}
+#topnav ul {
+  list-style: none;
+  margin: auto 0;
+  padding: 0;
+}
+#topnav li {
+  display: inline-block;
+  margin: 0 30px;
+  margin-top: 10px;
+}
+#topnav .right {
+  float:right;
 }
