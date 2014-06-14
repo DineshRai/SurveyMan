@@ -1,0 +1,12 @@
+#login_form {
+  position: fixed;
+  margin-left: 500px;
+}
+#signup_form {
+  position: fixed;
+  margin-left: 500px ;
+}
+
+#image {
+  position: absolute;
+}

@@ -19,7 +19,9 @@ post '/signup' do
     session[:user_id] = @user.id
   end
   @surveys = Survey.all
+
   redirect '/survey'
+
 end
 
 get '/survey/new' do
@@ -32,11 +34,13 @@ post '/survey' do
 	params[:questions].each do |question|
 		question = Question.create(name: question[:name], survey_id: survey.id )
 		index = params[:questions].index(question)
+
 		params[:options][index].each do |option|
 			Option.create(name: option[:name], question_id: question.id)
 		end
 	end
 	redirect '/survey'
+
 end
 
 get '/survey' do
@@ -50,6 +54,12 @@ get '/survey/:id' do
 end
 
 post '/survey/:id' do
+<<<<<<< HEAD
 	raise params.inspect
 
+=======
+  p '*' * 100
+p params
+# redirect '/'
+>>>>>>> master
 end
