@@ -4,5 +4,4 @@ class Survey < ActiveRecord::Base
   has_many :options, through: :questions
   has_many :answers, through: :options
 
-  validates :name, presence: true, format: string
 end
