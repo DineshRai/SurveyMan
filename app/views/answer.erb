@@ -1,5 +1,5 @@
 <script src="/js/answer.js"></script>
-<script type="text/javascript"> var length = <%= @survey.length%></script>
+<script type="text/javascript"></script>
 <div class="container">
 
   <div id="new">
@@ -15,6 +15,7 @@
         </div>
         <% end %>
       </div>
+      <canvas id="canvas" width="10" height="20"> </canvas>
       <input type="submit" name="/survey/<%= @survey.id %>">
     </form>
     <button type="button" id="next">Next</button>
