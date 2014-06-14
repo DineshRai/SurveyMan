@@ -55,6 +55,7 @@ end
 
 post '/survey/:id' do
   p '*' * 100
-p params
+  require 'json'
+p JSON.parse(params[:ans])
 # redirect '/'
 end
