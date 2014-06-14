@@ -1,28 +1,28 @@
 require 'json'
 
 get '/' do
-  erb :index
+	erb :index
 end
 
 post '/login' do
-  @email = params[:email]
-  @password = params[:password]
-  if user
-    session[:user_id] = user.id
-  end
-  @surveys = Survey.all
-  redirect '/sruvey'
+	@email = params[:email]
+	@password = params[:password]
+	if user
+		session[:user_id] = user.id
+	end
+	@surveys = Survey.all
+	redirect '/sruvey'
 end
 
 
 post '/signup' do
-  @user = User.new(email: params[:email], password: params[:password])
-  if @user.save
-    session[:user_id] = @user.id
-  end
-  @surveys = Survey.all
+	@user = User.new(email: params[:email], password: params[:password])
+	if @user.save
+		session[:user_id] = @user.id
+	end
+	@surveys = Survey.all
 
-  redirect '/survey'
+	redirect '/survey'
 
 end
 
@@ -56,6 +56,9 @@ get '/survey/:id' do
 end
 
 post '/survey/:id' do
-	params = JSON.parse(params)
-	raise params.inspect
+	require 'json'
+	answers = JSON.parse(params[:ans])
+	answers.each do |k,v|
+		Answer.create(option: Option.find(v.to_i), responder: User.find(session[:user_id]))
+	end
 end

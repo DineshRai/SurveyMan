@@ -95,8 +95,6 @@ $(document).ready(function() {
   });
   $('#surveyForm').on('submit', function(e){
     e.preventDefault();
-    console.log(Answers);
-    console.log(JSON.stringify(Answers));
-    $.post($('#surveyForm').attr('action'),JSON.stringify(Answers));
+    request = $.post($('#surveyForm').attr('action'),{ans:JSON.stringify(Answers)});
   });
 });
