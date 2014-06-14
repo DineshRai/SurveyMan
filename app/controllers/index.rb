@@ -4,7 +4,7 @@ get '/' do
 	erb :index
 end
 
-post '/login' do
+post '/user/login' do
 	@email = params[:email]
 	@password = params[:password]
 	if user
@@ -15,15 +15,13 @@ post '/login' do
 end
 
 
-post '/signup' do
+post '/user/signup' do
 	@user = User.new(email: params[:email], password: params[:password])
 	if @user.save
 		session[:user_id] = @user.id
 	end
 	@surveys = Survey.all
-
 	redirect '/survey'
-
 end
 
 get '/survey/new' do
@@ -61,4 +59,19 @@ post '/survey/:id' do
 	answers.each do |k,v|
 		Answer.create(option: Option.find(v.to_i), responder: User.find(session[:user_id]))
 	end
+end
+
+get '/user' do
+	user = User.find(session[:user_id])
+	@surveys = Survey.where(user: user)
+	erb :user
+end
+
+post '/survey/:id/stats' do
+	@questions = Question.where(survey: [:params[:survey.id]])
+end
+
+get '/user/logout' do
+	session.clear
+	redirect '/'
 end
