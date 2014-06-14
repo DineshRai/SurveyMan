@@ -21,7 +21,7 @@ $(document).ready(function(){
     $("#back").css("z-index","1")
     $("#signup_form").css("z-index","5")
   });
-    $("#back").on("click",function(event){
+  $("#back").on("click",function(event){
     $("#signup_form").hide();
     $("#login_form").hide();
     $("#back").css("opacity","0");
