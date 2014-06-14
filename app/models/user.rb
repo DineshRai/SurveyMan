@@ -20,5 +20,4 @@ class User < ActiveRecord::Base
     @user = self.find_by(email: email)
     return @user if @user and BCrypt::Password.new(@user.password_hash) == password
   end
-
 end
