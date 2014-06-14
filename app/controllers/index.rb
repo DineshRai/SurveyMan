@@ -6,12 +6,14 @@ end
 
 post '/user/login' do
 	@email = params[:email]
-	@password = params[:password]
+	user = User.authenticate(@email, params[:password])
 	if user
 		session[:user_id] = user.id
+		@surveys = Survey.all
+		redirect '/survey'
+	else
+		redirect '/'
 	end
-	@surveys = Survey.all
-	redirect '/sruvey'
 end
 
 
@@ -30,11 +32,9 @@ end
 
 post '/survey' do
 	survey = Survey.create(name: params[:title], user_id: session[:user_id])
-	# question_length = params[:questions].length
 	params[:questions].each do |question|
 		question = Question.create(name: question[:name], survey_id: survey.id )
 		index = params[:questions].index(question)
-
 		params[:options][index].each do |option|
 			Option.create(name: option[:name], question_id: question.id)
 		end
@@ -72,6 +72,6 @@ post '/survey/:id/stats' do
 end
 
 get '/user/logout' do
-	session.clear
+	session[:user_id] = nil
 	redirect '/'
 end
