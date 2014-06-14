@@ -4,7 +4,7 @@
 
   <div id="new">
     <h2>Question </h2>
-    <form id="surveyForm" action="/survey/<%= @survey.id %>" method="post">
+    <form id="surveyForm" action="/survey/<%= @survey.id %>" method="get">
       <div id="inputsDiv">
         <% @survey.questions.each do |question| %>
         <div>
