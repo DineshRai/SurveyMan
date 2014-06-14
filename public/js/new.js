@@ -43,9 +43,6 @@ $(document).ready(function() {
     question --;
     updateHeader(question)
     showInputDiv(question)
-
-
-
     if (question === 1){
       $('#prev').hide()
     };
