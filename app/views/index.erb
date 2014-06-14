@@ -1,28 +1,17 @@
-<script src="/js/index.js"></script>
-<div id="blur">
-  <button id="login" type="button"> Login </button>
-  <button id="signup" type="button">
-    Signup </button>
-  <div id="image" ><img src="http://static.comicvine.com/uploads/original/11111/111113523/3605753-1936874063-31646.png">
-  </div>
-</div>
-  <div id='signup_form'>
-    <form action="/signup" method="post">
-      Sign Up<br>
-      <input type="input" name="email"placeholder="email"><br>
-      <input type="input" name="password" placeholder="password"><br>
-      <input type="input" name="password_confirmation" placeholder="confirm password"><br><br>
-      <input type="submit" name="submit">
-    </form><br><br>
-  </div>
+<form id='signup_form' action="/user/signup" method="post">
+  <p>Sign Up</p>
+  <input type="input" name="email"placeholder="Email">
+  <input type="input" name="password" placeholder="Password">
+  <input type="input" name="password_confirmation" placeholder="Confirm password">
+  <input type="submit" name="submit">
+</form>
 
 
-    <div id='login_form'>
-      <form action="/login" method="post">
-        Log In<br>
-        <input type="input" name="email" placeholder="email"><br>
-        <input type="input" name="password" placeholder="password"><br><br>
-        <input type="submit" name="submit">
-      </form><br>
-    </div>
+<form id="login_form" action="/user/login" method="post">
+  <p>Login</p>
+  <input type="input" name="email" placeholder="email">
+  <input type="input" name="password" placeholder="password">
+  <input type="submit" name="submit">
+</form>
 
+<div id="back"></div>

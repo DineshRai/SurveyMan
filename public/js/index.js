@@ -1,22 +1,30 @@
 $(document).ready(function(){
   $("#signup_form").hide();
   $("#login_form").hide();
-   $("#signup").on("click",function(){
-      $("#signup_form").toggle();
-      $("#login_form").hide();
-      $("#blur").css("opacity","0.4");
+  $('form').blur();
 
+  $("#login").on("click",function(event){
+    event.preventDefault();
+    $("#login_form").show();
+    $("#signup_form").hide();
+    $("#back").css("opacity","0.7");
+    $("#back").css("background-color","black");
+    $("#back").css("z-index","1")
+    $("#login_form").css("z-index","5")
   });
-  $("#login").on("click",function(){
-      $("#login_form").show();
-      $("#signup_form").hide();
-      $("#blur").css("opacity","0.4");
-
+  $("#register").on("click",function(event){
+    event.preventDefault();
+    $("#signup_form").show();
+    $("#login_form").hide();
+    $("#back").css("opacity","0.7");
+    $("#back").css("background-color","black");
+    $("#back").css("z-index","1")
+    $("#signup_form").css("z-index","5")
   });
-  $("img").on("click",function(){
-      $("#login_form").hide();
-      $("#signup_form").hide();
-      $("#blur").css("opacity","1.0");
-
+    $("#back").on("click",function(event){
+    $("#signup_form").hide();
+    $("#login_form").hide();
+    $("#back").css("opacity","0");
+    $("#back").css("z-index","-1")
   });
 });
