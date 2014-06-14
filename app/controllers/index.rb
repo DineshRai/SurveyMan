@@ -1,3 +1,5 @@
+require 'json'
+
 get '/' do
   erb :index
 end
@@ -54,12 +56,6 @@ get '/survey/:id' do
 end
 
 post '/survey/:id' do
-<<<<<<< HEAD
+	params = JSON.parse(params)
 	raise params.inspect
-
-=======
-  p '*' * 100
-p params
-# redirect '/'
->>>>>>> master
 end
