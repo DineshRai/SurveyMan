@@ -1,50 +1,79 @@
 function addInputQuestion(question){
-$('#newSurvey #inputsDiv div').last().append('<input class="question" name="question[]" type="text" placeholder="question '+question+'">');
+  $('#newSurvey #inputsDiv').append('<div id="'+question+'"></div>');
+  $('#newSurvey #inputsDiv #'+question).append('<input class="question" name="question[]" type="text" placeholder="question '+question+'">');
 };
-function addInputOption(question, option){
-  $('#newSurvey #inputsDiv div').last().append('<input class="option" name="options'+question+'[]" type="text" placeholder="option '+option+'">')
+function addInputOption(question){
+  $('#newSurvey #inputsDiv #'+question).append('<input class="option" id="option'+question+'" name="options'+question+'[]" type="text" placeholder="option">')
+};
+function removeInputOption(question){
+  $('#newSurvey #inputsDiv #option'+question).last().remove();
 };
 function hideInputDiv(question){
   $('#newSurvey #inputsDiv div').eq(question-1).hide()
 };
-function showInputDiv(question){
-  $('#newSurvey  #inputsDiv div').eq(question-1).show()
+function updateRemoveOption(question){
+  if ($('#newSurvey #inputsDiv #option'+question).length <= 2){
+    $('#removeOption').css("opacity","0.2");
+  }else {
+    $('#removeOption').css("opacity","1");
+  };
 };
 function updateHeader(question){
-  $('#new h2').text('Question '+question)
+
 };
-function nextQuestion(question){
-    hideInputDiv(question-1);
-    updateHeader(question)
-  if($('#newSurvey div').length > question){
-    showInputDiv(question)
-  }else{
-  $('#newSurvey #inputsDiv').append('<div></div>')
+function updateInputs(question){
+  $('#new h2').text('Question '+question);
+  console.log($('#inputsDiv div').length)
+  console.log(question)
+  if($('#inputsDiv div').length < question){
+    console.log(true)
     addInputQuestion(question);
     for(i = 1; i < 3; i++){
-      addInputOption(question, i)
-    }
-  }
-}
+      addInputOption(question)
+    };
+  };
+  $('#newSurvey  #inputsDiv div').each(function(index){
+    $('#newSurvey  #inputsDiv div').eq(index).hide();
+  });
+  $('#newSurvey #inputsDiv #'+question).show()
+  updateRemoveOption(question)
+};
 
 $(document).ready(function() {
   var question = 1
-  updateHeader(question)
-  nextQuestion(question)
-  $('#prev').hide()
+  updateInputs(question);
+  $('#prev').css("opacity","0.2");
+  $('#removeOption').css("opacity","0.2");
+
+
 
   $('#new').on('click','#next', function(event){
     question ++;
-    nextQuestion(question)
-    $('#prev').show()
+    updateInputs(question)
+    $('#prev').css("opacity","1");
+  });
+  $('#new').on('click','#addOption', function(event){
+    $('#removeOption').css("opacity","1");
+    addInputOption(question)
+  });
+  $('#new').on('click','#removeOption', function(event){
+    if ($('#newSurvey #inputsDiv #option'+question).length <= 2){
+      $('#removeOption').css("opacity","0.2");
+    } else if($('#newSurvey #inputsDiv #option'+question).length === 3){
+      $('#removeOption').css("opacity","0.2");
+      removeInputOption(question);
+    }else{
+      removeInputOption(question);
+    };
   });
   $('#new').on('click','#prev', function(event){
-    hideInputDiv(question);
-    question --;
-    updateHeader(question)
-    showInputDiv(question)
-    if (question === 1){
-      $('#prev').hide()
+    if (question <= 2){
+      $('#prev').css("opacity","0.2");
+    }
+    if (question != 1){
+      question --;
+      updateInputs(question)
+
     };
   });
 });

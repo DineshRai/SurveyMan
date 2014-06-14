@@ -1,3 +1,8 @@
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
 .container {
   width: 600px;
   margin: 0 auto;
@@ -28,9 +33,21 @@
 #login_form input[type='submit']:hover, #signup_form input[type='submit']:hover {
   border: 5px red groove;
 }
-
-#supermanImg {
-  position: absolute;
+#newSurvey {
+  width: 200px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+.optionButton {
+  width: 22px;
+  border-radius: 20px;
+  display: inline-block;
+  border: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border: solid red 2px;
 }
 #new input{
   width: 200px;
@@ -39,7 +56,14 @@
   border: 5px red groove;
   text-align: center;
 }
-#new button{
+#addOption {
+float: left;
+}
+#removeOption {
+float: right;
+}
+
+.navButton {
   width: 200px;
   display: block;
   margin: 10px auto;
@@ -48,9 +72,9 @@
 #new h2 {
   text-align: center;
 }
-#new div {
-  margin: 30px 0;
-}
+
+
+
 #canvas {
   position: fixed;
   top:50px;
@@ -58,8 +82,7 @@
   z-index: -1;
 }
 #topnav {
-/*  position: fixed;
-*/  top:0;
+  top:0;
   height: 50px;
   width: 100%;
   margin: auto;
