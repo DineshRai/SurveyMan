@@ -1,27 +1,27 @@
+require 'json'
+
 get '/' do
-  erb :index
+	erb :index
 end
 
-post '/login' do
-  @email = params[:email]
-  @password = params[:password]
-  if user
-    session[:user_id] = user.id
-  end
-  @surveys = Survey.all
-  redirect '/sruvey'
+post '/user/login' do
+	@email = params[:email]
+	@password = params[:password]
+	if user
+		session[:user_id] = user.id
+	end
+	@surveys = Survey.all
+	redirect '/sruvey'
 end
 
 
-post '/signup' do
-  @user = User.new(email: params[:email], password: params[:password])
-  if @user.save
-    session[:user_id] = @user.id
-  end
-  @surveys = Survey.all
-
-  redirect '/survey'
-
+post '/user/signup' do
+	@user = User.new(email: params[:email], password: params[:password])
+	if @user.save
+		session[:user_id] = @user.id
+	end
+	@surveys = Survey.all
+	redirect '/survey'
 end
 
 get '/survey/new' do
@@ -54,8 +54,24 @@ get '/survey/:id' do
 end
 
 post '/survey/:id' do
-  p '*' * 100
-  require 'json'
-p JSON.parse(params[:ans])
-# redirect '/'
+	require 'json'
+	answers = JSON.parse(params[:ans])
+	answers.each do |k,v|
+		Answer.create(option: Option.find(v.to_i), responder: User.find(session[:user_id]))
+	end
+end
+
+get '/user' do
+	user = User.find(session[:user_id])
+	@surveys = Survey.where(user: user)
+	erb :user
+end
+
+post '/survey/:id/stats' do
+	@questions = Question.where(survey: [:params[:survey.id]])
+end
+
+get '/user/logout' do
+	session.clear
+	redirect '/'
 end

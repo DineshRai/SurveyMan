@@ -1,3 +1,10 @@
-<% User.surveys.each do |survey| %>
-  <a href="/survey/<%= survey.id %>"<%= survey.name %></a><br>
-<% end %>
+<form action="/survey/:id/stats" method = "post">
+	<select name="survey">
+		<optgroup label="surveys">
+			<% @surveys.each do |survey| %>
+			<option value="<%=survey.id%>"><%=survey.name%></option>
+			<% end %>
+		</optgroup>
+	</select>
+	<button type="submit">Submit</button>
+</form>

@@ -17,6 +17,5 @@ $(document).ready(function(){
       $("#login_form").hide();
       $("#signup_form").hide();
       $("#blur").css("opacity","1.0");
-
   });
 });
