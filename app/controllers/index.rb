@@ -50,5 +50,6 @@ get '/survey/:id' do
 end
 
 post '/survey/:id' do
+	raise params.inspect
 
 end
