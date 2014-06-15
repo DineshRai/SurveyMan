@@ -2,12 +2,12 @@
 <script type="text/javascript"></script>
 <div class="container">
 
-  <div id="new">
+  <div id="answer">
     <h2>Question </h2>
     <form id="surveyForm" action="/survey/<%= @survey.id %>" method="get">
       <div id="inputsDiv">
-        <% @survey.questions.each do |question| %>
-        <div>
+        <% @survey.questions.each_with_index do |question,questionNum| %>
+        <div id="<%= questionNum %>">
           <span class="question"><%= question.name %></span>
           <% question.options.each do |option|%>
             <button type="button"  name="<%=option.id%>" class="option"><%= option.name %></button>
@@ -16,9 +16,9 @@
         <% end %>
       </div>
       <canvas id="canvas" width="10" height="20"> </canvas>
+      <button class="navButton" type="button" id="next">Next   ----> </button>
+      <button class="navButton" type="button" id="prev">Prev   <---- </button>
       <input type="submit" name="/survey/<%= @survey.id %>">
     </form>
-    <button type="button" id="next">Next</button>
-    <button type="button" id="prev">Prev</button>
   </div>
 </div>
