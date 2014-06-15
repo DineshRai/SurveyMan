@@ -4,9 +4,10 @@ get '/survey/new' do
 end
 
 post '/survey' do
-  p params
   count = 1
-  survey = Survey.create(name: params[:title], user_id: session[:user_id])
+  survey = Survey.create(name: params[:title], creator: current_user)
+  p params
+  p params[:question]
   params[:question].each_with_index do |question, index|
     question = Question.create(name: question, survey: survey)
     vari = "options#{count}"
@@ -34,8 +35,10 @@ post '/survey/:id' do
   require 'json'
   answers = JSON.parse(params[:ans])
   answers.each do |question,option|
-    Answer.create(option: Option.find(v.to_i), responder: User.find(session[:user_id]))
+    Answer.create(option: Option.find(option.to_i), responder: User.find(session[:user_id]))
   end
+  p '****************************** post /survey/:id'
+  200
 end
 
 post '/survey/:id/stats' do

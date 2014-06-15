@@ -21,10 +21,7 @@ function updateRemoveOption(question){
 
 function updateInputs(question){
   $('#new h2').text('Question '+question);
-  console.log($('#inputsDiv div').length)
-  console.log(question)
   if($('#inputsDiv div').length < question){
-    console.log(true)
     addInputQuestion(question);
     for(i = 1; i < 3; i++){
       addInputOption(question)

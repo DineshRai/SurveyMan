@@ -1,7 +1,11 @@
 get '/user' do
   redirect '/' unless logged_in?
-  user = User.find(session[:user_id])
-  @surveys = Survey.where(user: user)
+  p '*'*100
+  p current_user
+  p '*'*100
+  p current_user.surveys
+  p '*'*100
+  @surveys = current_user.surveys
   erb :user
 end
 
