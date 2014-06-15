@@ -50,10 +50,23 @@ $(document).ready(function() {
     updateInputs(question)
     $('#prev').css("opacity","1");
   });
+
+
+  $('#new').on('click','#prev', function(event){
+    if (question <= 2){
+      $('#prev').css("opacity","0.2");
+    }
+    if (question != 1){
+      question --;
+      updateInputs(question)
+    };
+  });
+
   $('#new').on('click','#addOption', function(event){
     $('#removeOption').css("opacity","1");
     addInputOption(question)
   });
+
   $('#new').on('click','#removeOption', function(event){
     if ($('#newSurvey #inputsDiv #option'+question).length <= 2){
       $('#removeOption').css("opacity","0.2");
@@ -62,16 +75,6 @@ $(document).ready(function() {
       removeInputOption(question);
     }else{
       removeInputOption(question);
-    };
-  });
-  $('#new').on('click','#prev', function(event){
-    if (question <= 2){
-      $('#prev').css("opacity","0.2");
-    }
-    if (question != 1){
-      question --;
-      updateInputs(question)
-
     };
   });
 });
