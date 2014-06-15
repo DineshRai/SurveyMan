@@ -47,7 +47,7 @@ function start(){
   ball.width = wm
   ball.height = hm
   ball = ball.getContext("2d");
-  setInterval(move,5);};
+  setInterval(move,1);};
 function move(){
   var wm = window.innerWidth;
   var hm = window.innerHeight;
@@ -55,10 +55,10 @@ function move(){
   ball.clearRect(0,0, wm,hm);
   ball.beginPath();
   ball.fillStyle=color;
-  ball.arc(x1,y1,1,0,Math.PI*2,true);
-  ball.arc(x2,y2,1,0,Math.PI*2,true);
-  ball.arc(x3,y3,1,0,Math.PI*2,true);
-  ball.arc(x4,y4,1,0,Math.PI*2,true);
+  ball.arc(x1,y1,20,0,Math.PI*2,false);
+  // ball.arc(x2,y2,1,0,Math.PI*2,true);
+  // ball.arc(x3,y3,1,0,Math.PI*2,true);
+  // ball.arc(x4,y4,1,0,Math.PI*2,true);
   ball.closePath();
   ball.fill();
   if( x1<25 || x1>wm-25) {dx1=-dx1;}
