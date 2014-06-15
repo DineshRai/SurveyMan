@@ -3,5 +3,5 @@ class Option < ActiveRecord::Base
   belongs_to :question
   has_many :responders, class_name: 'User', foreign_key: :user_id
 
-  validates :name, format: string
+  # validates :name, format: string
 end
