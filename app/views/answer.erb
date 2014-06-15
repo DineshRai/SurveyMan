@@ -1,24 +1,26 @@
 <script src="/js/answer.js"></script>
-<script type="text/javascript"></script>
 <div class="container">
 
   <div id="answer">
     <h2>Question </h2>
-    <form id="surveyForm" action="/survey/<%= @survey.id %>" method="get">
+    <form id="surveyForm" action="/survey" method="get">
       <div id="answerDiv">
         <% @survey.questions.each_with_index do |question,questionNum| %>
         <div id="<%= questionNum+1 %>">
-          <span class="question"><%= question.name %></span>
+          <p class="question"><%= question.name %></p>
           <% question.options.each do |option|%>
-            <button type="button"  name="<%=option.id%>" class="option"><%= option.name %></button>
+          <button type="button"  name="<%=option.id%>" class="option"><%= option.name %></button>
           <% end %>
         </div>
         <% end %>
       </div>
-      <canvas id="canvas" width="10" height="20"> </canvas>
-      <button class="navButton" type="button" id="next">Next   ----> </button>
-      <button class="navButton" type="button" id="prev">Prev   <---- </button>
-      <input type="submit" id='submit' name="/survey/<%= @survey.id %>">
+      <script src="/js/move.js"></script>
+      <canvas id="canvas" width="10" height="20"></canvas>
+      <div id="navbuttonsdiv">
+        <button class="navButton" type="button" id="next">Next ----> </button>
+        <button class="navButton" type="button" id="prev">Prev <---- </button>
+        <input  class="navButton" type="submit" id='submit' name="/survey/<%= @survey.id %>">
+      </div>
     </form>
   </div>
 </div>

@@ -23,11 +23,6 @@ function greyOptions(question){
 };
 
 function updateAnswers(question){
-  console.log(question);
-  console.log($('#answer #answerDiv div').length);
-
-
-
   $('#answer h2').text('Question '+question);
   if($('#answer #answerDiv div').length === question){
     showSubmit()
@@ -82,9 +77,9 @@ $(document).ready(function() {
 
   // Submit button click
   $('#surveyForm').on('submit', function(e){
-    e.preventDefault();
+    // e.preventDefault();
     // if (valid()){
-    request = $.post($('#surveyForm').attr('action'),{ans:JSON.stringify(Answers)});
+    request = $.post($(this).attr('name'),{ans:JSON.stringify(Answers)});
     // }else{
       //error message saying you need to answer  a spesific question
       // maybe move them to a unawnserd question? or only show the submit button?
