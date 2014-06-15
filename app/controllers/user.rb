@@ -1,4 +1,5 @@
 get '/user' do
+  redirect '/' unless logged_in?
   user = User.find(session[:user_id])
   @surveys = Survey.where(user: user)
   erb :user
@@ -6,17 +7,16 @@ end
 
 
 get '/user/logout' do
-  session[:user_id] = nil
+  redirect '/' unless logged_in?
+  session.clear
   redirect '/'
 end
 
 
 post '/user/login' do
-  @email = params[:email]
-  user = User.authenticate(@email, params[:password])
+  user = User.authenticate(params[:email], params[:password])
   if user
     session[:user_id] = user.id
-    @surveys = Survey.all
     redirect '/survey'
   else
     redirect '/'
@@ -29,6 +29,5 @@ post '/user/signup' do
   if @user.save
     session[:user_id] = @user.id
   end
-  @surveys = Survey.all
   redirect '/survey'
 end

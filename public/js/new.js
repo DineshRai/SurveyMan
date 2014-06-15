@@ -18,9 +18,7 @@ function updateRemoveOption(question){
     $('#removeOption').css("opacity","1");
   };
 };
-function updateHeader(question){
 
-};
 function updateInputs(question){
   $('#new h2').text('Question '+question);
   console.log($('#inputsDiv div').length)

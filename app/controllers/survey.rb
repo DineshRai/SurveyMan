@@ -1,4 +1,5 @@
 get '/survey/new' do
+  redirect '/' unless logged_in?
   erb :new
 end
 
@@ -12,15 +13,16 @@ post '/survey' do
     end
   end
   redirect '/survey'
-
 end
 
 get '/survey' do
+  redirect '/' unless logged_in?
   @surveys = Survey.all
   erb :list
 end
 
 get '/survey/:id' do
+  redirect '/' unless logged_in?
   @survey = Survey.find(params[:id])
   erb :answer
 end
@@ -28,7 +30,7 @@ end
 post '/survey/:id' do
   require 'json'
   answers = JSON.parse(params[:ans])
-  answers.each do |k,v|
+  answers.each do |question,option|
     Answer.create(option: Option.find(v.to_i), responder: User.find(session[:user_id]))
   end
 end

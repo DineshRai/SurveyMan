@@ -1,4 +1,3 @@
-require 'bcrypt'
 
 class User < ActiveRecord::Base
   has_many :surveys
@@ -17,7 +16,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(email, password)
-    @user = self.find_by(email: email)
+    @user = User.where(email: email).first
     return @user if @user and BCrypt::Password.new(@user.password_hash) == password
   end
 end

@@ -1,15 +1,17 @@
 <div id="topnav">
-  <% if !logged_in? %>
+  <% if logged_in? %>
   <ul>
+    <% p 'if' %>
     <li><a href="/survey/new">New Survey</a></li>
     <li><a href="/user">Your Surveys</a></li>
     <li><a href="/survey">Answer Surveys</a></li>
     <li class="right"><a href="/user/logout">Log out</a></li>
   </ul>
   <% else %>
-  <li class="login"><a id="login" href="/user/login">Login</a></li>
-  <li class="login"><a id="register" href="/user/signup">Register</a></li>
-  <% if current_user %>
-  <li><a id="sign-out" href="/user/logout %>">Sign Out</a></li>
-  <% end %><% end %>
+  <% p 'else' %>
+  <ul>
+    <li class="login"><a id="login" href="/user/login">Login</a></li>
+    <li class="login"><a id="register" href="/user/signup">Register</a></li>
+  </ul>
+  <% end %>
 </div>
