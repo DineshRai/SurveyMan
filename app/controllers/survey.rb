@@ -4,13 +4,16 @@ get '/survey/new' do
 end
 
 post '/survey' do
+  p params
+  count = 1
   survey = Survey.create(name: params[:title], user_id: session[:user_id])
-  params[:questions].each do |question|
-    question = Question.create(name: question[:name], survey_id: survey.id )
-    index = params[:questions].index(question)
-    params[:options][index].each do |option|
-      Option.create(name: option[:name], question_id: question.id)
+  params[:question].each_with_index do |question, index|
+    question = Question.create(name: question, survey: survey)
+    vari = "options#{count}"
+    params[vari].each do |option|
+      Option.create(name: option, question: question)
     end
+    count += 1
   end
   redirect '/survey'
 end
