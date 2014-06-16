@@ -45,8 +45,17 @@ post '/survey/:id/stats' do
   @questions = Question.where(survey: [:params[:survey.id]])
 end
 
-
-post '/survey/:id/stats' do
+get '/survey/:id/stats' do
+  @stats = []
   @survey = Survey.find(params[:id])
-  @stats = @survey.questions.all.first.options.group(:answer).count
+  @survey.questions.all.each do |question|
+    array = []
+    question.options.each do |option|
+      array = []
+      array << option.name
+      array << option.answers.all.count
+    end
+    @stats << array
+  end
+  p @stats
 end
